@@ -1,5 +1,6 @@
 {
     "prefix":"!",
-    "inviteMessage":"@here Come join {0.author.mention} in `{1}` for a video chat at <https://www.discordapp.com/channels/{2}/{3}>!",
-    "failedMessage":"{0.author.mention}, you need to be in a voice channel to start a video chat!"
+    "inviteMessage":"Come join {0.author.mention} in `{1}` for a video chat at <https://www.discordapp.com/channels/{2}/{3}>!",
+    "failedMessage":"{0.author.mention}, you need to be in a voice channel to start a video chat!",
+    "activityMessage":"!voice"
 }

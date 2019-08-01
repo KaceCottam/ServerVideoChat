@@ -3,6 +3,9 @@ import json
 
 with open('config.json') as config_json:
     config = json.load(config_json)
+    
+    class MyActivity(discord.Activity):
+        pass
 
     class MyClient(discord.Client):
 
@@ -33,6 +36,7 @@ with open('config.json') as config_json:
                 await self.cmdVideo(message)
 
         async def on_ready(self):
+            await self.change_presence(activity=discord.Game(name=config['activityMessage']))
             print('Logged on as {0}!'.format(self.user))
 
         async def on_message(self, message):
