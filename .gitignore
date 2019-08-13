@@ -1,3 +1,4 @@
 .env
 .vscode/
 auth.json
+__pycache__/
