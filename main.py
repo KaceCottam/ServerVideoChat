@@ -1,8 +1,6 @@
 import discord
 import json
 import os
-from selenium import webdriver
-from selenium.webdriver.common.by import By
 from keep_alive import keep_alive
 
 geckodriver = os.getcwd() + "/geckodriver"
@@ -32,12 +30,7 @@ with open('config.json') as config_json:
                 await message.channel.send(config['failedMessage'].format(message))
         
         async def cmdWatch(self, message):
-            driver = webdriver.Firefox(executable_path=geckodriver)
-            driver.get("https://www.watch2gether.com/?lang=en")
-            elem = driver.find_element(By.XPATH, "//button[@id='create_room_button'][@type='submit']")
-            elem.click()
             message.channel.send(config['watch2gether'].format(message,driver.url))
-            driver.quit()
 
         commands = {'video': cmdVideo,
         'watch2gether': cmdWatch}
