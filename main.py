@@ -1,12 +1,12 @@
 import discord
 import json
 import os
-import sys
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from keep_alive import keep_alive
 
 geckodriver = os.getcwd() + "/geckodriver"
+os.system('chmod +x '+geckodriver)
 
 with open('config.json') as config_json:
     config = json.load(config_json)
@@ -32,7 +32,7 @@ with open('config.json') as config_json:
                 await message.channel.send(config['failedMessage'].format(message))
         
         async def cmdWatch(self, message):
-            driver = webdriver.firefox(executable_path=geckodriver)
+            driver = webdriver.Firefox(executable_path=geckodriver)
             driver.get("https://www.watch2gether.com/?lang=en")
             elem = driver.find_element(By.XPATH, "//button[@id='create_room_button'][@type='submit']")
             elem.click()
@@ -40,13 +40,13 @@ with open('config.json') as config_json:
             driver.quit()
 
         commands = {'video': cmdVideo,
-        'watch2gether':cmdWatch}
+        'watch2gether': cmdWatch}
 
         async def parseCommand(self, command, args, message):
             if command not in self.commands:
                 print('Bad command!')
             else:
-                await self.commands[command](message)
+                await self.commands[command](self,message)
 
         async def on_ready(self):
             await self.change_presence(activity=discord.Game(name=config['activityMessage']))
