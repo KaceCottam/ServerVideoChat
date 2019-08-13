@@ -30,7 +30,7 @@ with open('config.json') as config_json:
                 await message.channel.send(config['failedMessage'].format(message))
         
         async def cmdWatch(self, message):
-            message.channel.send(config['watch2gether'].format(message,driver.url))
+            message.channel.send(config['watch2gether'].format(message,os.getenv('LINK')))
 
         commands = {'video': cmdVideo,
         'watch2gether': cmdWatch}
