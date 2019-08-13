@@ -1,5 +1,7 @@
 import discord
 import json
+import os
+from keep_alive import keep_alive
 
 with open('config.json') as config_json:
     config = json.load(config_json)
@@ -47,5 +49,6 @@ with open('config.json') as config_json:
 
 
 client = MyClient()
-with open('auth.json') as auth:
-    client.run(json.load(auth)['token'])
+keep_alive()
+token=os.getenv('TOKEN')
+client.run(token)
